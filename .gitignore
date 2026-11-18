@@ -1,0 +1,10 @@
+# Banco e artefatos gerados
+*.duckdb
+target/
+dbt_packages/
+logs/
+.venv/
+__pycache__/
+
+# Dados brutos (baixe do Kaggle; nao versionar CSVs grandes)
+data/*.csv

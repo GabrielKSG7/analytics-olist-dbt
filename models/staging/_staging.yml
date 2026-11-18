@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: stg_orders
+    description: "Pedidos, um por order_id."
+    columns:
+      - name: order_id
+        description: "Chave do pedido."
+        data_tests: [unique, not_null]
+      - name: order_status
+        description: "Status do pedido."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['delivered','shipped','canceled','unavailable','invoiced','processing','created','approved']
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+  - name: stg_order_items
+    columns:
+      - name: order_id
+        data_tests: [not_null]
+  - name: stg_products
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+  - name: stg_payments
+    columns:
+      - name: order_id
+        data_tests: [not_null]
+  - name: stg_reviews
+    columns:
+      - name: order_id
+        data_tests: [not_null]

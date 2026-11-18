@@ -1,0 +1,24 @@
+version: 2
+models:
+  - name: dim_customers
+    description: "Dimensão de clientes (grão = customer_id)."
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+  - name: fct_orders
+    description: "Fato de pedidos (grão = order_id) com receita, entrega e avaliação."
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        description: "FK para dim_customers."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+  - name: mart_monthly_revenue
+    description: "Receita e métricas operacionais por mês (pedidos entregues)."
+    columns:
+      - name: mes_compra
+        data_tests: [not_null]
